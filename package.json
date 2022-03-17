@@ -1,0 +1,23 @@
+{
+  "name": "badgechain",
+  "version": "1.0.0",
+  "description": "A badge system in blockchain",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiveandfive/badgechain.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hiveandfive/badgechain/issues"
+  },
+  "homepage": "https://github.com/hiveandfive/badgechain#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.3"
+  }
+}
