@@ -23,7 +23,7 @@ function mine(block, difficulty) {
     while (!hash.match(regex)) {
         block.pow++;
         // console.log("" + block.timestamp + block.blockId + block.previousHash);
-        hash = block.reHash();
+        hash = reHash(block);
         console.log("hash", hash);
     }
     console.timeEnd("HASH")
