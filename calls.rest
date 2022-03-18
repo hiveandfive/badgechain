@@ -1,3 +1,7 @@
+GET http://localhost:1337/validate
+
+###
+
 POST http://localhost:1337/addBlock
 Content-Type: application/json
 
