@@ -29,6 +29,11 @@ app.get('/', (req, res) => {
     res.send('<h1>Block och kedjor!</h1><div>'+JSON.stringify(MyChain, null, 6)+'</div>')
 });
 
+app.get('/validate', (req, res) => {
+    
+    res.send(MyChain.validate() ? "VALID" : "INVALID");
+});
+
 app.get('/add', (req, res) => {
     MyChain.addBlock({user: "Pelle", course: "Hoolahoop kursen"});
     // Denna route printar kedjan inte databasen, för test

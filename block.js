@@ -1,6 +1,6 @@
 import crypto from "crypto"
 
-const encrypt = data => crypto.createHash("sha256").update(data).digest("hex")
+const encrypt = data => crypto.createHash("sha256").update(data).digest("base64")
 
 // Klass för vårat "block" i blockkedjan
 class Block {
@@ -15,7 +15,7 @@ class Block {
 
     mine(difficulty) {
         console.time("HASH")
-        const regex = new RegExp(`^(0){${difficulty}}.*`);
+        const regex = new RegExp(`^((h|H)5){${difficulty}}.*`);
         let hash = "";
         while (!hash.match(regex)) {
             this.pow++;
