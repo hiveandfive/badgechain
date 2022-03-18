@@ -2,34 +2,31 @@ import crypto from "crypto"
 
 const encrypt = data => crypto.createHash("sha256").update(data).digest("base64")
 
-// Klass för vårat "block" i blockkedjan
-class Block {
-    constructor(blockId, previousHash, data, difficulty) {
-        this.blockId = blockId;
-        this.timestamp = new Date().getTime();
-        this.pow = 0;
-        this.blockHash = this.mine(difficulty);
-        this.prevHash = previousHash;
-        this.data = data;
-    }
+export const reHash = (block) => encrypt("" + block.timestamp + block.pow + block.blockId + block.previousHash + JSON.stringify(block.data));
 
-    reHash = () => encrypt("" + this.timestamp + this.pow + this.blockId + this.previousHash + JSON.stringify(this.data));
 
-    mine(difficulty) {
-        console.time("HASH")
-        const regex = new RegExp(`^((h|H)5){${difficulty}}.*`);
-        let hash = "";
-        while (!hash.match(regex)) {
-            this.pow++;
-            // console.log("" + this.timestamp + this.blockId + this.previousHash);
-            hash = this.reHash();
-            console.log("hash", hash);
-        }
-        console.timeEnd("HASH")
-        console.log("POW:", this.pow);
-        return hash;
-    }
-
+export function createBlock(blockId, previousHash, data, difficulty) {
+    let block = {}
+    block.blockId = blockId;
+    block.timestamp = new Date().getTime();
+    block.pow = 0;
+    block.prevHash = previousHash;
+    block.data = data;
+    block.blockHash = mine(block, difficulty);
+    return block;
 }
 
-export default Block;
+function mine(block, difficulty) {
+    console.time("HASH")
+    const regex = new RegExp(`^((h|H)5){${difficulty}}.*`);
+    let hash = "";
+    while (!hash.match(regex)) {
+        block.pow++;
+        // console.log("" + block.timestamp + block.blockId + block.previousHash);
+        hash = block.reHash();
+        console.log("hash", hash);
+    }
+    console.timeEnd("HASH")
+    console.log("POW:", block.pow);
+    return hash;
+}
