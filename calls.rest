@@ -6,8 +6,8 @@ POST http://localhost:1337/addBlock
 Content-Type: application/json
 
 {
-    "user": "Kalle Persson",
-    "course": "Sparka-boll-kunskap 1" 
+    "user": "John Doe",
+    "course": "Sparka-boll-kunskap 3" 
 }
 
 ###
