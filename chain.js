@@ -18,7 +18,7 @@ class BlockChain {
     addBlock(data) {
         let blockId = this.chain.length;
         let previousHash = this.chain.length !== 0 ? this.chain[this.chain.length - 1].blockHash : "";
-        let block = new Block(blockId, previousHash, data);
+        let block = new Block(blockId, previousHash, data, 4);
 
         this.chain.push(block);
         FS.writeFileSync("chain", JSON.stringify(this.chain), null, 6);

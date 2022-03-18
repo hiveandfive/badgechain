@@ -1,43 +1,31 @@
-import bcrypt from "bcrypt";
-import { hash } from "bcrypt";
+import crypto from "crypto"
+
+const encrypt = data => crypto.createHash("sha256").update(data).digest("hex")
 
 // Klass för vårat "block" i blockkedjan
-class Block{
-    constructor(blockId, previousHash, data) {
+class Block {
+    constructor(blockId, previousHash, data, difficulty) {
         this.blockId = blockId;
         this.timestamp = Date.now();
-        this.blockHash = this.mine(1);
+        this.pow = 0;
+        this.blockHash = this.mine(difficulty);
         this.prevHash = previousHash;
         this.data = data;
-        this.pow = 0;
-        
     }
-
 
     mine(difficulty) {
-
+        console.time("HASH")
         const regex = new RegExp(`^(0){${difficulty}}.*`);
-        hash = "";
+        let hash = "";
         while (!hash.match(regex)) {
             this.pow++;
-            
-            //this.hash = calculateHash(this);
-            hash = bcrypt.hashSync(String(this.blockId + this.timestamp + this.blockHash + this.previousHash + JSON.stringify(this.data)), 10)
+            hash = encrypt(String(this.timestamp + hash + this.blockId + this.previousHash + JSON.stringify(this.data)))
             console.log("hash", hash);
         }
-        console.log("POW:", pow);
+        console.timeEnd("HASH")
+        console.log("POW:", this.pow);
         return hash;
     }
-
-    // // Vi krypterar blocket
-    // getHash() {
-
-    //     // POW?
-
-    //     return bcrypt.hashSync(String(this.blockId + this.timestamp + this.blockHash + this.previousHash + JSON.stringify(this.data)), 10)
-    
-    // };
-    
 }
 
 export default Block;
