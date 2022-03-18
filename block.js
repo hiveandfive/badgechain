@@ -13,16 +13,16 @@ class Block {
         this.data = data;
     }
 
-    reHash = () => encrypt(String(this.timestamp + this.blockId + this.previousHash + JSON.stringify(this.data)));
+    reHash = () => encrypt("" + this.timestamp + this.pow + this.blockId + this.previousHash + JSON.stringify(this.data));
 
     mine(difficulty) {
         console.time("HASH")
         const regex = new RegExp(`^((h|H)5){${difficulty}}.*`);
-        
+        let hash = "";
         while (!hash.match(regex)) {
             this.pow++;
             // console.log("" + this.timestamp + this.blockId + this.previousHash);
-            let hash = encrypt("" + this.timestamp + this.pow + this.blockId + this.previousHash + JSON.stringify(this.data));
+            hash = this.reHash();
             console.log("hash", hash);
         }
         console.timeEnd("HASH")
