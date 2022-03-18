@@ -11,7 +11,14 @@ import BlockChain from "./chain.js";
 // Vi skapar vår blockkedja
 const MyChain = new BlockChain();
 
-// Vi matar in tre block till kedjan, Kolla här med en if om det redan finns en kedja, skit då i detta.
+
+// const FirstChain = new BlockChain();
+// const TwoChain = new BlockChain();
+// const ChainNetwork = [FirstChain, TwoChain];
+//
+// Vi matar in tre block till kedjan, Kolla
+// här med en if om det redan finns en kedja, skit då i detta.
+//
 // MyChain.addBlock({user: "Janne", course: "JS1"});
 // MyChain.addBlock({user: "Pelle", course: "JS1"});
 // MyChain.addBlock({user: "Janne", course: "React"});
@@ -30,7 +37,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/validate', (req, res) => {
-    
     res.send(MyChain.validate() ? "VALID" : "INVALID");
 });
 
