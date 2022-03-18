@@ -1,0 +1,17 @@
+POST http://localhost:1337/addBlock
+Content-Type: application/json
+
+{
+    "user": "Kalle Persson",
+    "course": "Sparka-boll-kunskap 1" 
+}
+
+###
+
+POST http://localhost:1337/addBlock
+Content-Type: application/json
+
+{
+    "user": "Kalle Persson",
+    "kurs": "Sparka-boll-kunskap 1" 
+}

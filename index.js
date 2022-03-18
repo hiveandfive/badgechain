@@ -35,6 +35,16 @@ app.get('/add', (req, res) => {
     res.send('<h1>Block och kedjor!</h1><div>'+JSON.stringify(MyChain, null, 6)+'</div>')
 });
 
+app.post("/addBlock", (req, res) => {
+    const { user, course } = req.body
+    if (user && course) {
+        MyChain.addBlock({user, course});
+        res.send('<h1>Block och kedjor!</h1><div>'+JSON.stringify(MyChain, null, 6)+'</div>')
+    } else {
+        res.status(418).send("oopsie")
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server live on localhost:${port}`)
 });
