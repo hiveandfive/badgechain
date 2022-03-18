@@ -12,9 +12,9 @@ import BlockChain from "./chain.js";
 const MyChain = new BlockChain();
 
 // Vi matar in tre block till kedjan, Kolla här med en if om det redan finns en kedja, skit då i detta.
-MyChain.addBlock({user: "Janne", course: "JS1"});
-MyChain.addBlock({user: "Pelle", course: "JS1"});
-MyChain.addBlock({user: "Janne", course: "React"});
+// MyChain.addBlock({user: "Janne", course: "JS1"});
+// MyChain.addBlock({user: "Pelle", course: "JS1"});
+// MyChain.addBlock({user: "Janne", course: "React"});
 
 // Logga ut kedjan
 console.log("init chain", JSON.stringify(MyChain, null, 6));
@@ -27,4 +27,14 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
     // Denna route printar kedjan inte databasen, för test
     res.send('<h1>Block och kedjor!</h1><div>'+JSON.stringify(MyChain, null, 6)+'</div>')
+});
+
+app.get('/add', (req, res) => {
+    MyChain.addBlock({user: "Kalle", course: "Hoppla"});
+    // Denna route printar kedjan inte databasen, för test
+    res.send('<h1>Block och kedjor!</h1><div>'+JSON.stringify(MyChain, null, 6)+'</div>')
+});
+
+app.listen(port, () => {
+    console.log(`Server live on localhost:${port}`)
 });
