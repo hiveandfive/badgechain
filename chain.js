@@ -22,6 +22,10 @@ class BlockChain {
         for(let i = 1; i < this.chain.length; i++) {
             let prevBlock = this.chain[i-1];
             let currentBlock = this.chain[i];
+
+            let reHash = 
+
+            console.log("rehash " + reHash)
             
             if (currentBlock.prevHash != prevBlock.blockHash) {
                 return false;

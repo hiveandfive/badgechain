@@ -40,6 +40,17 @@ app.get('/add', (req, res) => {
     res.send('<h1>Block och kedjor!</h1><div>'+JSON.stringify(MyChain, null, 6)+'</div>')
 });
 
+
+
+app.get('/hack', (req, res) => {
+    MyChain.chain[2].user = "FAKE USER";
+    console.log("hacked it!");
+    // Denna route printar kedjan inte databasen, för test
+    res.send('<h1>Block och kedjor!</h1><div>'+JSON.stringify(MyChain, null, 6)+'</div>')
+});
+
+
+
 app.post("/addBlock", (req, res) => {
     const { user, course } = req.body
     if (user && course) {
@@ -53,3 +64,4 @@ app.post("/addBlock", (req, res) => {
 app.listen(port, () => {
     console.log(`Server live on localhost:${port}`)
 });
+
