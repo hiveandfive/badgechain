@@ -13,7 +13,7 @@ class BlockChain {
     }
 
     set chain(value) {
-        FS.writeFileSync("chain", JSON.stringify(value), null, 6);
+        FS.writeFileSync("chain", JSON.stringify(value, null, 6));
     }
 
 
@@ -45,8 +45,11 @@ class BlockChain {
         let previousHash = this.chain.length !== 0 ? this.chain[this.chain.length - 1].blockHash : "";
         let block = createBlock(blockId, previousHash, data, 1);
 
-
-        this.chain = [...this.chain, block];
+        if (this.validate()) {
+            this.chain = [...this.chain, block];
+            return block;
+        }
+        return null;
     }
 
 }

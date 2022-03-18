@@ -35,9 +35,9 @@ app.get('/validate', (req, res) => {
 });
 
 app.get('/add', (req, res) => {
-    MyChain.addBlock({user: "Pelle", course: "Hoolahoop kursen"});
+    const block = MyChain.addBlock({user: "Pelle", course: "Hoolahoop kursen"});
     // Denna route printar kedjan inte databasen, för test
-    res.send('<h1>Block och kedjor!</h1><div>'+JSON.stringify(MyChain, null, 6)+'</div>')
+    res.send(block ? "Nytt block: "+JSON.stringify(block, null, 4) : "FAIL!!!!")
 });
 
 
@@ -54,8 +54,8 @@ app.get('/hack', (req, res) => {
 app.post("/addBlock", (req, res) => {
     const { user, course } = req.body
     if (user && course) {
-        MyChain.addBlock({user, course});
-        res.send('<h1>Block och kedjor!</h1><div>'+JSON.stringify(MyChain, null, 6)+'</div>')
+        const block = MyChain.addBlock({user, course});
+        res.send(block ? "Nytt block: "+JSON.stringify(block, null, 4) : "FAIL!!!!")
     } else {
         res.status(418).send("oopsie")
     }
