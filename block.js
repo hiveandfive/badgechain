@@ -18,11 +18,11 @@ class Block {
     mine(difficulty) {
         console.time("HASH")
         const regex = new RegExp(`^((h|H)5){${difficulty}}.*`);
-        let hash = "";
+        
         while (!hash.match(regex)) {
             this.pow++;
             // console.log("" + this.timestamp + this.blockId + this.previousHash);
-            hash = encrypt("" + this.timestamp + this.pow + this.blockId + this.previousHash + JSON.stringify(this.data));
+            let hash = encrypt("" + this.timestamp + this.pow + this.blockId + this.previousHash + JSON.stringify(this.data));
             console.log("hash", hash);
         }
         console.timeEnd("HASH")
