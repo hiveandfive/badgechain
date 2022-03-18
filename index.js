@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/add', (req, res) => {
-    MyChain.addBlock({user: "Kalle", course: "Hoppla"});
+    MyChain.addBlock({user: "Pelle", course: "Hoolahoop kursen"});
     // Denna route printar kedjan inte databasen, för test
     res.send('<h1>Block och kedjor!</h1><div>'+JSON.stringify(MyChain, null, 6)+'</div>')
 });

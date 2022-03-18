@@ -12,7 +12,7 @@ class BlockChain {
         }
     }
 
-    //
+    // 
 
     // Metod för att lägga till ett block till kedjan.
     addBlock(data) {
